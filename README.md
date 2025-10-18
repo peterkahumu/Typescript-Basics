@@ -1,80 +1,94 @@
-# Hello World (TypeScript) — Project Overview
+# TypeScript Basics
 
-This is a minimal TypeScript sample project demonstrating basic type composition, enums, and simple functions using a small domain model (people, students, librarians, doctors).
+A TypeScript learning project demonstrating **type composition**, **intersections**, **unions**, and **enums** through practical examples.
 
-## Repository structure
+## 📁 Project Structure
 
-- `tsconfig.json` — TypeScript configuration for compiling the project.
-- `src/` — Source TypeScript files:
-  - `types.ts` — Type definitions and enums used across the project.
-  - `index.ts` — Sample usage of the `StudentLibrarian` type and a helper that prints a library schedule.
-  - `doctor.ts` — Sample usage of the `HospitalStaff` (doctor) type, an enum for `Department`, and a retirement-date calculator.
-- `dist/` — (Empty) output directory for compiled JavaScript (if you run `tsc` it will likely appear here depending on your `tsconfig.json`).
-
-## What the code does
-
-- `types.ts` defines reusable TypeScript types and an enum:
-  - `Person` — Basic person fields (id, name, email, optional dateOfBirth).
-  - `Student` — Student-specific fields (course, year).
-  - `Librarian` — Librarian-specific fields (libraryID, shiftHours).
-  - `StudentLibrarian` — Intersection type combining `Person & Student & Librarian`.
-  - `Department` — Enum listing hospital departments (Cardiology, Neurology, Pediatrics, Oncology).
-  - `Doctor` — Fields and a function type to calculate retirement date.
-  - `HospitalStaff` — Intersection of `Person & Doctor`.
-
-- `index.ts` creates a `StudentLibrarian` object and prints a schedule string using `getLibrarySchedule`.
-
-- `doctor.ts` creates a `HospitalStaff` (doctor) object and prints retirement information using `getRetirementInfo`. The `retirementAge` helper function computes a retirement date from a given `Date` of birth and a retirement age.
-
-## How to build and run
-
-Prerequisites:
-- Node.js (v14+ recommended)
-- npm or yarn
-- TypeScript installed either globally (`npm i -g typescript`) or as a dev dependency in the project
-
-1. Install dependencies (if you add TypeScript locally):
-
-```bash
-npm init -y
-npm install --save-dev typescript
+```
+├── tsconfig.json          # TypeScript compiler configuration
+├── src/
+│   ├── types.ts           # Shared type definitions and enums
+│   ├── index.ts           # Student-Librarian example
+│   ├── doctor.ts          # Hospital staff example
+│   └── university_roles.ts # University member roles example
+└── dist/                  # Compiled JavaScript output
 ```
 
-2. Compile TypeScript to JavaScript:
+## 🎯 What This Project Demonstrates
 
+### 1. **types.ts** - Core Type Definitions
+
+Defines reusable types and enums:
+- `Person`, `Student`, `Librarian`, `Doctor` — Base and role-specific types
+- `StudentLibrarian` — Intersection type (`Person & Student & Librarian`)
+- `HospitalStaff` — Intersection type (`Person & Doctor`)
+- `Department` — Enum for hospital departments
+
+### 2. **index.ts** - Student-Librarian Example
+
+Creates a student-librarian and prints their work schedule.
+
+**Example Output:**
+```
+John (ID: 10) works in the library for 3 while studying for Computer Science
+```
+
+### 3. **doctor.ts** - Hospital Staff Example
+
+Demonstrates date calculations and enum usage for hospital staff.
+
+**Example Output:**
+```
+Dr. Amina (ID : 101) from Pediatrics will retire on Tue Jul 24 2063
+```
+
+### 4. **university_roles.ts** - Union Types & Multi-Role Handling
+
+Shows how to handle objects with multiple roles using union types:
+- `UniversityMember` — Union type supporting single or multiple roles
+- `describeMember()` — Function with role-based conditional logic
+
+**Example Output:**
+```
+Agnes is a student in Computer Science
+Melisa is a teacher in the Computer Science department, teaching Data Structures and Algorithms
+Anthony is a Student in Software Engineering and also teaches Foundations of Computation Science in the Computer Science department
+```
+
+## 🚀 Quick Start
+
+### Compile TypeScript
 ```bash
 npx tsc
 ```
 
-This will read `tsconfig.json` in the project root and emit compiled files (commonly into `dist/` depending on `tsconfig` settings).
-
-3. Run the compiled JavaScript (example if outputs go to `dist`):
-
+### Run Examples
 ```bash
+# Run compiled JavaScript
 node dist/index.js
 node dist/doctor.js
-```
+node dist/university_roles.js
 
-Or run directly with ts-node (for development):
-
-```bash
+# Or use ts-node for development
 npx ts-node src/index.ts
 npx ts-node src/doctor.ts
+npx ts-node src/university_roles.ts
 ```
 
-## Types and important functions
+## 📚 Key Concepts Covered
 
-- getLibrarySchedule(student: StudentLibrarian): string — returns a human-readable schedule for a student-librarian.
-- retirementAge(dateOfBirth: Date | undefined, retirementAge: number): Date | undefined — computes a retirement date or returns `undefined` if date of birth is missing.
-- getRetirementInfo(doctor: HospitalStaff): string — formats retirement information for a doctor using `Department` enum.
+- **Type Intersections** (`&`) — Combine multiple types
+- **Type Unions** (`|`) — Allow one of several types
+- **Enums** — Define named constants
+- **Optional Properties** (`?`) — Make fields optional
+- **Type Guards** — Runtime type checking with conditional logic
+- **Function Type Signatures** — Define callable properties in types
 
-## Notes and next steps
+## 🔧 Prerequisites
 
-- The project is intentionally small and focused on TypeScript typing examples. Consider adding a `package.json` with scripts for build and run (for example, a `build` script that runs `tsc` and `start` scripts to run the compiled files).
-- Add unit tests (Jest or Vitest) to verify the helpers and types behave as expected.
-- If you'd like, I can add a lightweight `package.json` and npm scripts, and compile the project to populate `dist/`.
+- Node.js (v14+)
+- TypeScript (`npm install -g typescript` or use `npx`)
 
-## License
+## 📝 License
 
-This project is licensed under the terms outlined in the [LICENSE](LICENSE) file.  
-Please review the full license to understand your rights and responsibilities.
+See [LICENSE](LICENSE) file for details.
