@@ -74,5 +74,7 @@ npx ts-node src/doctor.ts
 - Add unit tests (Jest or Vitest) to verify the helpers and types behave as expected.
 - If you'd like, I can add a lightweight `package.json` and npm scripts, and compile the project to populate `dist/`.
 
+## License
 
-
+This project is licensed under the terms outlined in the [LICENSE](LICENSE) file.  
+Please review the full license to understand your rights and responsibilities.
